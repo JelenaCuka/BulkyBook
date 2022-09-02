@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -21,24 +22,30 @@ namespace BulkyBook.Models
         public string Author { get; set; }
         [Required]
         [Range(1,10000)]
+        [Display(Name = "List Price")]
         public double ListPrice { get; set; }
         [Required]
         [Range(1, 10000)]
+        [Display(Name = "Price for 1-50")]
         public double Price { get; set; } // Final price, buy 1 product
         [Required]
         [Range(1, 10000)]
+        [Display(Name = "Price for 51-100")]
         public double Price50 { get; set; } // Final price, buy 50 products, special price
         [Required]
         [Range(1, 10000)]
+        [Display(Name = "Price for 100+")]
         public double Price100 { get; set; } // Final price, buy 100 product, special price
         [ValidateNever]
         public string ImageUrl { get; set; }
         [Required]
+        [Display(Name = "Category")]
         public int CategoryId { get; set; }
         [ForeignKey("CategoryId")] // this is not required when naming is set to tableId
         [ValidateNever]
         public Category Category { get; set; } //EF automatically creates FK relation, because named of prop CategoryId
         [Required]
+        [Display(Name ="Cover Type")]
         public int CoverTypeId { get; set; }
         [ForeignKey("CoverTypeId")]
         [ValidateNever]
