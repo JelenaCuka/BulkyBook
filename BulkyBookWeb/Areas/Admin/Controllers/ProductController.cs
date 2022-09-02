@@ -59,11 +59,11 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
         // POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Upsert(Product obj)
+        public IActionResult Upsert(ProductVM obj, IFormFile file)
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.Product.Update(obj);
+                //_unitOfWork.Product.Update(obj);
                 _unitOfWork.Save();
                 TempData["success"] = "Product edited successfully";
                 return RedirectToAction("Index");
