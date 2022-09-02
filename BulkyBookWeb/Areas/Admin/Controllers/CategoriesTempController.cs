@@ -8,8 +8,9 @@ using Microsoft.EntityFrameworkCore;
 using BulkyBook.DataAccess;
 using BulkyBook.Models;
 
-namespace BulkyBookWeb.Controllers
+namespace BulkyBookWeb.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CategoriesTempController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -22,9 +23,9 @@ namespace BulkyBookWeb.Controllers
         // GET: CategoriesTemp
         public async Task<IActionResult> Index()
         {
-              return _context.Categories != null ? 
-                          View(await _context.Categories.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Categories'  is null.");
+            return _context.Categories != null ?
+                        View(await _context.Categories.ToListAsync()) :
+                        Problem("Entity set 'ApplicationDbContext.Categories'  is null.");
         }
 
         // GET: CategoriesTemp/Details/5
@@ -150,14 +151,14 @@ namespace BulkyBookWeb.Controllers
             {
                 _context.Categories.Remove(category);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool CategoryExists(int id)
         {
-          return (_context.Categories?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Categories?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
