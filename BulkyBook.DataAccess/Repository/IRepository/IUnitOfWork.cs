@@ -8,10 +8,12 @@ namespace BulkyBook.DataAccess.Repository.IRepository
 {
     public interface IUnitOfWork
     {
+        IApplicationUserRepository ApplicationUser { get; }
         ICategoryRepository Category { get; }
         ICoverTypeRepository CoverType { get; }
         ICompanyRepository Company { get; }
         IProductRepository Product { get; }
+        IShoppingChartRepository ShoppingChart { get; }
 
 
         void Save();
