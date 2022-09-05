@@ -2,20 +2,23 @@ using BulkyBook.DataAccess;
 using BulkyBook.DataAccess.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using BulkyBook.DataAccess.Repository.IRepository;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using BulkyBook.Utility;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddRazorPages();
+builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
     builder.Configuration.GetConnectionString("DefaultConnection")
-    //,option => option.MigrationsAssembly("BulkyBook.DataAccess")
     ));
 
-builder.Services.AddDefaultIdentity<IdentityUser>() // options => options.SignIn.RequireConfirmedAccount = true
+builder.Services.AddIdentity<IdentityUser,IdentityRole>().AddDefaultTokenProviders() // options => options.SignIn.RequireConfirmedAccount = true
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddSingleton<IEmailSender,EmailSender>();
 
 var app = builder.Build();
 
