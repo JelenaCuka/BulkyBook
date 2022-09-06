@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace BulkyBook.DataAccess.Repository.IRepository
 {
-    public interface IShoppingChartRepository : IRepository<ShoppingChart>
+    public interface IShoppingCartRepository : IRepository<ShoppingCart>
     {
-        int IncrementCount(ShoppingChart shoppingChart, int count);
-        int DecrementCount(ShoppingChart shoppingChart, int count);
+        int IncrementCount(ShoppingCart shoppingCart, int count);
+        int DecrementCount(ShoppingCart shoppingCart, int count);
 
     }
 }

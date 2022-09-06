@@ -4,7 +4,7 @@
 
 namespace BulkyBookWeb.Migrations
 {
-    public partial class addShoppingChartToDb : Migration
+    public partial class addShoppingCartToDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

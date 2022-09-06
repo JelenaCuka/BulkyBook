@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BulkyBook.Models
 {
-    public class ShoppingChart
+    public class ShoppingCart
     {
         public int Id { get; set; }
         public int ProductId { get; set; }
