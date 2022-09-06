@@ -150,7 +150,7 @@ namespace BulkyBookWeb.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("BulkyBook.Models.ShoppingChart", b =>
+            modelBuilder.Entity("BulkyBook.Models.ShoppingCart", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -429,7 +429,7 @@ namespace BulkyBookWeb.Migrations
                     b.Navigation("CoverType");
                 });
 
-            modelBuilder.Entity("BulkyBook.Models.ShoppingChart", b =>
+            modelBuilder.Entity("BulkyBook.Models.ShoppingCart", b =>
                 {
                     b.HasOne("BulkyBook.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()

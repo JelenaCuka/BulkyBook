@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BulkyBookWeb.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220905201737_addShoppingChartToDb")]
-    partial class addShoppingChartToDb
+    [Migration("20220905201737_addShoppingCartToDb")]
+    partial class addShoppingCartToDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -152,7 +152,7 @@ namespace BulkyBookWeb.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("BulkyBook.Models.ShoppingChart", b =>
+            modelBuilder.Entity("BulkyBook.Models.ShoppingCart", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -431,7 +431,7 @@ namespace BulkyBookWeb.Migrations
                     b.Navigation("CoverType");
                 });
 
-            modelBuilder.Entity("BulkyBook.Models.ShoppingChart", b =>
+            modelBuilder.Entity("BulkyBook.Models.ShoppingCart", b =>
                 {
                     b.HasOne("BulkyBook.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()

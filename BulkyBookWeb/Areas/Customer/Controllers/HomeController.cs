@@ -26,7 +26,7 @@ namespace BulkyBookWeb.Areas.Customer.Controllers
         }
         public IActionResult Details(int productId)
         {
-            ShoppingChart chartObj = new()
+            ShoppingCart chartObj = new()
             {
                 Count = 1,
                 ProductId = productId,
@@ -38,22 +38,22 @@ namespace BulkyBookWeb.Areas.Customer.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public IActionResult Details(ShoppingChart shoppingChart)
+        public IActionResult Details(ShoppingCart shoppingCart)
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-            shoppingChart.ApplicationUserId = claim.Value;
+            shoppingCart.ApplicationUserId = claim.Value;
 
-            ShoppingChart chartFromDb = _unitOfWork.ShoppingChart.GetFirstOrDefault(
-                u => u.ApplicationUserId == claim.Value && u.ProductId == shoppingChart.ProductId);
+            ShoppingCart chartFromDb = _unitOfWork.ShoppingCart.GetFirstOrDefault(
+                u => u.ApplicationUserId == claim.Value && u.ProductId == shoppingCart.ProductId);
 
             if (chartFromDb == null)
             {
-                _unitOfWork.ShoppingChart.Add(shoppingChart);
+                _unitOfWork.ShoppingCart.Add(shoppingCart);
             }
             else
             {
-                _unitOfWork.ShoppingChart.IncrementCount(chartFromDb,shoppingChart.Count);
+                _unitOfWork.ShoppingCart.IncrementCount(chartFromDb,shoppingCart.Count);
             }
             _unitOfWork.Save();
 
