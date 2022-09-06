@@ -44,8 +44,20 @@ namespace BulkyBookWeb.Areas.Customer.Controllers
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
             shoppingChart.ApplicationUserId = claim.Value;
 
-            _unitOfWork.ShoppingChart.Add(shoppingChart);
+            ShoppingChart chartFromDb = _unitOfWork.ShoppingChart.GetFirstOrDefault(
+                u => u.ApplicationUserId == claim.Value && u.ProductId == shoppingChart.ProductId);
+
+            if (chartFromDb == null)
+            {
+                _unitOfWork.ShoppingChart.Add(shoppingChart);
+            }
+            else
+            {
+                _unitOfWork.ShoppingChart.IncrementCount(chartFromDb,shoppingChart.Count);
+            }
             _unitOfWork.Save();
+
+
 
             return RedirectToAction(nameof(Index));
         }
